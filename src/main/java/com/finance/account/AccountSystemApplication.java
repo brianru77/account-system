@@ -14,7 +14,7 @@ public class AccountSystemApplication {
         SpringApplication.run(AccountSystemApplication.class, args);
     }
 
-    // 서버가 켜질 때 실행되는 특수 메서드입니다.
+    //서버가 켜질 때 실행되는 특수 메서드입니다.
     @Bean
     public CommandLineRunner initData(AccountRepository accountRepository) {
         return args -> {
