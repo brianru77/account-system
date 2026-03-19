@@ -14,15 +14,19 @@ public class AccountSystemApplication {
         SpringApplication.run(AccountSystemApplication.class, args);
     }
 
-    //서버가 켜질 때 실행되는 특수 메서드입니다.
     @Bean
     public CommandLineRunner initData(AccountRepository accountRepository) {
         return args -> {
-            accountRepository.save(Account.builder()
-                    .accountNumber("123-456")
-                    .balance(1000000L)
-                    .build());
-            System.out.println("금융 데이터 초기화 완료!");
+            // 1번 계좌 생성 및 10,000원 입금
+            Account account1 = new Account("111-111");
+            account1.deposit(10000L);
+            accountRepository.save(account1);
+
+            // 2번 계좌 생성 (잔액 0원)
+            Account account2 = new Account("222-222");
+            accountRepository.save(account2);
+
+            System.out.println("초기 데이터 자동 세팅 완료! (1번: 1만원, 2번: 0원)");
         };
     }
 }
