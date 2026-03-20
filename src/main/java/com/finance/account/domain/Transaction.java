@@ -8,6 +8,11 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @NoArgsConstructor
+//accountId로 검색할 때 속도 증가시켜줌
+@Table(indexes = {
+        @Index(name = "idx_account_id", columnList = "accountId")
+})
+
 public class Transaction {
 
     @Id
@@ -29,4 +34,5 @@ public class Transaction {
         this.amount = amount;
         this.createdAt = LocalDateTime.now(); //현재 시간 자동 저장
     }
+
 }
